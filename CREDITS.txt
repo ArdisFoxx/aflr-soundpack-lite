@@ -1,0 +1,54 @@
+AFLP Soundpack - Audio Credits
+==============================
+
+All voice and sound-effect audio in this module is from the OpenNSFW SFX Pack,
+licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+This is an SFX pack. Per the pack's terms, please direct any audio-related contact to
+@OpenNSFWSP - do not contact individual contributors or performers directly.
+
+  SFX: OpenNSFW Sound Pack  |  @OpenNSFWSP
+
+Contributors:
+  ADV1SAGE
+  AudioElk
+  bbvshh
+  Chiyo1000Nights
+  EvilZorak
+  FlockaFlamingo
+  FxxxKuro
+  GeminiStarSign1
+  GRGLEGRGLE
+  hoshinomeririri
+  impasfx
+  KGF_Kiko
+  LeHornySFX3D
+  Lewd K. Sound
+  Lewddmon
+  Lurkydip
+  MagicalMysticVA
+  NyaughtyMeow
+  pixelcarnagee
+  plumenjoyersfx
+  PointyAux
+  RaptorAudioSFX
+  Salty145
+  SangriaSnake
+  SoundsofKookie
+  SquishSuccubus
+  That1LewdDude
+  thesoundeditgu1
+  Venus De Velours
+  Viscep
+
+Some sounds in the pack are released under CC0 / "Attribution Free" and are used
+without an attribution requirement.
+
+Full per-sound license details (CC0, CC BY 4.0, named contributors) are listed in
+"README - OpenNSFW SFX Pack Terms.pdf", bundled in the aflp-sfx folder of this module.
+
+----------------------------------------------------------------------------------
+AFLP Soundpack and ArdisFoxx's Lewd PF2e (c) ArdisFoxx.
+Module code is distributed under the GNU GPL v3. The bundled audio remains under its
+own CC BY 4.0 license as credited above.

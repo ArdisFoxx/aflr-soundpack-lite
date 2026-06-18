@@ -1,0 +1,37 @@
+{
+  "id": "aflr-soundpack-lite",
+  "title": "AFLR Soundpack Lite",
+  "description": "<p>The recommended companion soundpack for <strong>ArdisFoxx's Lewd Roleplaying</strong> (AFLR, module id <code>ardisfoxxs-lewd-pf2e</code>). A curated, lightweight selection of voice profiles and ambient SFX - a small download that still covers AFLP's full audio feature set: escalating moans, climax / edge / struggle / defeat voices, cumflation lines, positional plaps, oral and fingering SFX, and cumflation stings. AFLP auto-detects it once enabled (no path setup).</p><p><strong>Want more sounds?</strong> The full <strong>AFLR Soundpack</strong> bundles every voice actor and the complete SFX library (a much larger download). Install it instead and AFLP uses it automatically.</p><p><strong>Audio credit:</strong> All voice and sound-effect audio is from the <strong>OpenNSFW Sound Pack</strong>, licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). This is an SFX pack - please contact @OpenNSFWSP rather than individual contributors. See CREDITS.txt at the module root and 'README - OpenNSFW SFX Pack Terms.pdf' in the aflp-sfx folder.</p>",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "ArdisFoxx",
+      "url": "https://subscribestar.adult/ardisfoxxart",
+      "discord": "ardisfoxx",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/ArdisFoxx/aflr-soundpack-lite",
+  "manifest": "https://github.com/ArdisFoxx/aflr-soundpack-lite/releases/latest/download/module.json",
+  "download": "https://github.com/ArdisFoxx/aflr-soundpack-lite/releases/latest/download/module.zip",
+  "readme": "https://github.com/ArdisFoxx/aflr-soundpack-lite/blob/main/README.md",
+  "bugs": "https://github.com/ArdisFoxx/aflr-soundpack-lite/issues",
+  "license": "CC-BY-4.0",
+  "flags": {
+    "canUpload": true
+  },
+  "relationships": {
+    "requires": [
+      {
+        "id": "ardisfoxxs-lewd-pf2e",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  },
+  "action": "manageModule"
+}

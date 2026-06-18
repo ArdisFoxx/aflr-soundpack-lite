@@ -1,0 +1,8 @@
+What is CC0?
+Creative Commmons 0. Public domain. Audio released under creative commons liscense that does not need to be attributed.
+
+Why CC0?
+Other liscenses involve attribution and we deal in NSFW...
+Which is a ethical concern in that many creators may not want to know sounds are used for NSFW. 
+We chose to branch out to CC0 material to expand libraries [cost & time constraints] but also to protect all works published using the sound pack.
+Ultimately we will only use liscenses that are "public domain" in order to avoid concerns.
