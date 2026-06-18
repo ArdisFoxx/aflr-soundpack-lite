@@ -1,1 +1,8 @@
+# Mark audio (and other binary assets) as binary so git does not try to diff or alter them.
+*.ogg binary
+*.mp3 binary
+*.wav binary
+*.flac binary
+*.m4a binary
+*.webm binary
 packs/** binary

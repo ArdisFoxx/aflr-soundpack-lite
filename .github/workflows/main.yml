@@ -1,0 +1,117 @@
+# GitHub Actions workflow for creating a new FoundryVTT module release.
+#
+# This is the same release pattern used by ArdisFoxx's Lewd PF2e, adapted for
+# the AFLP Soundpack (Lite). On a published GitHub release it:
+#   1. Reads the version from the release tag (e.g. "v1.0.0" or "1.0.0").
+#   2. Fills the #{...}# token placeholders in module.json.
+#   3. Zips the module into module.zip.
+#   4. Attaches module.json and module.zip to the release.
+#
+# Troubleshooting:
+#   - module.json must be valid JSON (test at https://jsonlint.com/).
+#   - The release tag must be "v<major>.<minor>.<patch>" or "<major>.<minor>.<patch>".
+#   - This runs only when a release is PUBLISHED, not when a tag is pushed.
+#   - A tag alone does not create a release; publish a release to trigger this.
+
+name: Create Module Files For GitHub Release
+
+
+env:
+  # The "Project URL" link shown on FoundryVTT's website.
+  project_url: "https://github.com/${{github.repository}}"
+
+  # Always points to the latest manifest. Foundry uses this to detect updates,
+  # so it must NEVER change once published.
+  latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/module.json"
+
+  # The module archive for the specific release being processed.
+  release_module_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip"
+
+
+on:
+  # Only run when a release is published.
+  release:
+    types: [published]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+      # Pull the version out of the release tag.
+      # Accepts "v1.2.3" or "1.2.3".
+      - name: Extract Version From Tag
+        id: get_version
+        uses: battila7/get-version-action@v2
+
+
+      # Replace the #{...}# tokens in module.json in-place (not committed).
+      - name: Modify Module Manifest With Release-Specific Values
+        id: sub_manifest_link_version
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: 'module.json'
+        env:
+          VERSION: ${{steps.get_version.outputs.version-without-v}}
+          URL: ${{ env.project_url }}
+          MANIFEST: ${{ env.latest_manifest_url }}
+          DOWNLOAD: ${{ env.release_module_url }}
+
+
+      # Create module.zip.
+      #
+      # A soundpack's audio folders can be named anything (sounds/, audio/,
+      # assets/, packs/...), and `zip` only WARNS on missing paths rather than
+      # failing, which means an explicit list can silently drop audio from the
+      # release. To avoid that, this zips the whole checkout and excludes only
+      # the repo/CI plumbing. module.json lands at the zip root, as Foundry
+      # requires.
+      #
+      # If you prefer a leaner, explicit archive instead, comment out the block
+      # below and uncomment the "explicit list" block.
+      - name: Create Module Archive
+        run: |
+          zip --recurse-paths ./module.zip . \
+            --exclude '.git/*' \
+            --exclude '.github/*' \
+            --exclude '.gitignore' \
+            --exclude '.gitattributes' \
+            --exclude 'module.zip'
+
+      # --- Alternative: explicit file list (lean archive) ---
+      # - name: Create Module Archive
+      #   run: |
+      #     zip                                    \
+      #       --recurse-paths                      \
+      #        ./module.zip                        \
+      #       module.json                          \
+      #       README.md                            \
+      #       CHANGELOG.md                         \
+      #       LICENSE                              \
+      #       sounds/                              \
+      #       audio/                               \
+      #       assets/                              \
+      #       packs/
+      #     # Add a backslash at the end of each line for any extra paths.
+
+
+      # Attach module.json and module.zip to the release.
+      - name: Update Release With Files
+        id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: './module.json, ./module.zip'
+          tag: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
